@@ -1,7 +1,7 @@
 package cn.menghan.tool.tree.util;
 
 import cn.menghan.tool.tree.pojo.TreeNode;
-import org.springframework.stereotype.Component;
+import lombok.experimental.UtilityClass;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author by liu.hongda
  * @date 2019/12/31 11:50
  */
-@Component
+@UtilityClass
 public class TreeChildNode {
 
     /**
@@ -23,7 +23,7 @@ public class TreeChildNode {
      * @param <T>       继承树的list的类
      * @return id的集合
      */
-    public static <T extends TreeNode> List<String> getChildIdByParentId(List<T> treeNodes, String root) {
+    public <T extends TreeNode> List<String> getChildIdByParentId(List<T> treeNodes, String root) {
         List<T> build = TreeBuilder.build(treeNodes, root);
         List<String> list = new LinkedList<>();
         build.forEach(d -> {
@@ -47,7 +47,7 @@ public class TreeChildNode {
      * @param list 新节点
      * @return 当前子节点的所有子节点id
      */
-    private static List<String> getChild(List<TreeNode> data, List<String> list) {
+    private List<String> getChild(List<TreeNode> data, List<String> list) {
         data.forEach(d -> {
             String code = d.getId();
             list.add(code);
